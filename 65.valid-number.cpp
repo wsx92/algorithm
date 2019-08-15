@@ -40,11 +40,41 @@ public:
                     return false;
                 }
             }
-            if(!(s[i] >= '0' && s[i] <= '9')) {
+            if(s[i] == ' ') {
+                while(s[i] == ' ') {
+                    i++;
+                    if(i >= s.size()) {
+                        if(flag) {
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+                }
+                if(i >= s.size()) {
+                    if(flag) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                else {
+                    return false;
+                }
+            }
+            if(!(s[i] >= '0' && s[i] <= '9') && s[i] != 'e') {
+                return false;
+            }
+        }
+        else {
+            if(s[i] != 'e' && s[i] != ' ') {
                 return false;
             }
         }
         while(s[i] >= '0' && s[i] <= '9') {
+            flag = true;
             i++;
             if(i >= s.size()) {
                 return true;
@@ -57,6 +87,14 @@ public:
             i++;
             if(i >= s.size()) {
                 return false;
+            }
+            if(s[i] == ' ') {
+                while(s[i] == ' ') {
+                    i++;
+                    if(i >= s.size()) {
+                        return false;
+                    }
+                }
             }
         }
         if(s[i] == '-' || s[i] == '+') {
